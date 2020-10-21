@@ -9,14 +9,14 @@ This replicates as well as possible real deployment configurations, where you ha
 ## Stack version
 
   - Zookeeper version: 3.4.9
-  - Kafka version: 2.5.0 (Confluent 5.5.0)
-  - Kafka Schema Registry: Confluent 5.5.0
-  - Kafka Schema Registry UI: 0.9.4
-  - Kafka Rest Proxy: Confluent 5.5.0
+  - Kafka version: 2.5.0 (Confluent 5.5.1)
+  - Kafka Schema Registry: Confluent 5.5.1
+  - Kafka Schema Registry UI: 0.9.5
+  - Kafka Rest Proxy: Confluent 5.5.1
   - Kafka Topics UI: 0.9.4
-  - Kafka Connect: Confluent 5.5.0
-  - Kafka Connect UI: 0.9.4
-  - ksqlDB Server: Confluent 5.5.0
+  - Kafka Connect: Confluent 5.5.1
+  - Kafka Connect UI: 0.9.7
+  - ksqlDB Server: Confluent 5.5.1
   - Zoonavigator: 0.8.0
 
 
@@ -152,7 +152,7 @@ A: yes. Say you want to change `zoo1` port to `12181` (only relevant lines are s
 A: yes. Say you want to change `kafka1` port to `12345` (only relevant lines are shown). Note only `LISTENER_DOCKER_EXTERNAL` changes:
 ```
   kafka1:
-    image: confluentinc/cp-kafka:5.5.0
+    image: confluentinc/cp-kafka:5.5.1
     hostname: kafka1
     ports:
       - "12345:12345"
@@ -160,13 +160,13 @@ A: yes. Say you want to change `kafka1` port to `12345` (only relevant lines are
       KAFKA_ADVERTISED_LISTENERS: LISTENER_DOCKER_INTERNAL://kafka1:19092,LISTENER_DOCKER_EXTERNAL://${DOCKER_HOST_IP:-127.0.0.1}:12345
 ```
 
-**Q: Kafka is using a lot of disk space for testing. Can I reduce it?
+**Q: Kafka is using a lot of disk space for testing. Can I reduce it?**
 
 A: yes. This is for testing only!!! Reduce the KAFKA_LOG_SEGMENT_BYTES to 16MB and the KAFKA_LOG_RETENTION_BYTES to 128MB
 
 ```
   kafka1:
-    image: confluentinc/cp-kafka:5.5.0
+    image: confluentinc/cp-kafka:5.5.1
     ...
     environment:
       ...
